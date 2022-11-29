@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+  <script src="//yui.yahooapis.com/3.18.1/build/yui/yui-min.js"></script>
+</head>
+
+<body>
+    
+    <div id="demo" style="margin-left:100px;margin-top:300px">
+        <img src="img/milkis-can.png" width="150">
+    </div>
+    
+
+    
+    <script type="text/javascript">
+        
+    YUI().use('anim', function(Y) {
+        setInterval(function()
+    {
+        demoA = Y.one('#demo'); // The animated element
+
+        var anim = new Y.Anim({
+            node: demoA,
+            duration: 4.5,
+            easing: Y.Easing.easeOut
+        });           
+        
+
+        var startAnim = function(e){
+            demoA.setStyles({'left': 0, 'top': 0}); 
+            anim.set('to', {curve: [ [446,89], [953,-254], [1171,816] ]});
+            anim.run();
+        };    
+
+        Y.one('#demo').on('click', startAnim);
+        startAnim(); 
+    }, 4000);   
+    });
+
+
+    </script>
+</body>
+</html>
+

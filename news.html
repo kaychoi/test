@@ -1,0 +1,85 @@
+<?
+header('Content-Type: text/html; charset=UTF-8'); 
+
+include('simple_html_dom.php'); 
+
+$url = 'http://www.koreadaily.com/news/list.asp?category=emigration&branch='; 
+$html = @file_get_html($url); 
+unset($arr_result); 
+$arr_result = $html->find('#news-list-section > div > div.cp-area.cp-area-major.smalltext-section.pa_btm70 > div.newslist > section > article:nth-child(1) > div > p.small_heading.listarea > a');
+
+
+if(count($arr_result) > 0){
+
+foreach($arr_result as $e){ 
+
+
+//$e->children(2)->children(1)->plaintext.'<br/>';
+$title = $e->plaintext.'<br/>';
+$url = $e->href;
+//echo $title;
+//echo $url;
+
+?>
+<a href="http://www.koreadaily.com/news/<?=$url?>"><?=$title?></a>
+<?
+
+
+
+
+} 
+} else { 
+echo "<br/>"; 
+} 
+
+
+unset($arr_result); 
+$arr_result = $html->find('h1.range-revamp-header-section'); 
+
+
+if(count($arr_result) > 0){
+
+foreach($arr_result as $e){ 
+
+
+echo $e->children(0)->plaintext;
+
+echo $e->children(1)->children(0)->plaintext;
+echo $e->children(1)->children(1)->plaintext;
+?>
+
+<?
+
+
+
+
+} 
+} else { 
+echo "<br/>"; 
+} 
+
+
+
+unset($arr_result); 
+$arr_result = $html->find('span.range-revamp-price');
+
+if(count($arr_result) > 0){ 
+
+foreach($arr_result as $e){ 
+$price = $e->children(1)->plaintext.$e->children(2)->plaintext; 
+?>
+
+<?=preg_replace("/\s+/","",$price)?>
+<?
+
+echo $e->children(2)->children(1)->children(0)->plaintext.'<br/>'; 
+} 
+} else { 
+echo "<br/>"; 
+} 
+
+
+exit; 
+
+?>
+

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Google Map</title>
+</head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    $('#button2').on('click',function(){
+        window.navigator.geolocation.getCurrentPosition(success, error);//()를 붙여 자동호출하는것 x
+    })
+})
+</script>
+<script>
+ function success(position){
+	$('#div').text("내 위치 위도 = " + position.coords.latitude
+			+" 내 위치 경도 = " + position.coords.longitude);
+}
+function error(err){
+	$('div').text("조회 실패 ==>" + err.code);
+}
+</script>
+<body>
+<div id="div"></div>
+<button type="button" id="button2">현재위치조회</button>
+
+<button type="button" id="button">지도 중심 이동하기</button>
+<button type="button" id="button1">지도 중심 이동하기</button>
+  <div id="map" style="width:100%; height: 100vh;"></div>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBO44gRGRio27FUxSOiAoJcsMmMOJw4zu4&callback=initMap&region=us"></script>
+  <script src="./map.js"></script>
+</body>
+</html>

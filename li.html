@@ -1,0 +1,67 @@
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf8">
+<div id="partner">
+</div>
+
+
+
+
+
+<script>
+// var count = 3;
+
+
+// var partner1 = '(주)에스엠텍';
+// var partner_url1 = 'http://www.smtech.co.kr/Partners/partners';
+
+// var partner2 = '유니오텍';
+// var partner_url2 = 'http://uniotech.kr/bbs/partners.php';
+
+// var partner3 = '신호텍 주식회사';
+// var partner_url3 = 'http://www.shinhotek.com/page/sub2_1';
+
+
+var p = {
+
+    // 사용방법
+    // "파트너사" : "파트너사 링크주소"
+    // 추가하려면 한줄을 복사해서 사용하시면 추가됩니다.
+
+    "(주)에스엠텍": "http://www.smtech.co.kr/Partners/partners",
+    "유니오텍": "http://uniotech.kr/bbs/partners.php",
+    "신호텍 주식회사": "http://www.shinhotek.com/page/sub2_1",
+    "네이버": "http://www.smtech.co.kr/Partners/partners",
+    "다음": "http://uniotech.kr/bbs/partners.php",
+    "인피즈": "http://www.shinhotek.com/page/sub2_1",
+
+
+};
+
+for (var key in p) {
+    if (p.hasOwnProperty(key)) {
+        console.log(key + " -> " + p[key]);
+       // $("#partner").append("<li><a href='"+p[key]+"' target='_blank'>"+key+"</li>");
+        $("#partner").append("<li><a href='"+p[key]+"' target='_blank'><img src='http://www.smtech.co.kr/uploads/Banner/26966c4bd70626aa497ce71b9cbec96f.jpg'></li>");
+    }
+}
+
+
+// for(i=1;i<=count;i++) {
+
+//     var text = partner.i;
+//     $("#partner").append("<li class='partner"+i+"'></li>");
+//     console.log(i);
+// }
+
+// for(i=1;i<=count;i++) {
+// $(".partner"+i+"").prepend("<a href='"+eval("partner_url"+i)+"' target='_blank'>"+eval("partner"+i)+"</a>");
+
+// }
+
+// var ele = document.getElementById('partner'); 
+// var eleCount = ele.childElementCount; 
+// console.log(eleCount);
+</script>
+<style>
+    #partner li {width:25%;display:inline-block;}
+</style>

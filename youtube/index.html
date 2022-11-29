@@ -1,0 +1,59 @@
+<div class="video" style="position:relative;z-index:-100;">
+                        <div id="outer">
+                            <div class="inner">
+                                <div class="wrapper vimeo-wrapper">
+                                    <!-- <iframe src="https://player.vimeo.com/video/637277920?transparent=0&background=1&autoplay=1&loop=1&byline=0&title=0&muted=1&api=1"
+                        frameborder="0" allow="autoplay" width="100%" height="100%" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> -->
+                        <iframe allow="autoplay" src="https://player.vimeo.com/video/637277920?transparent=0&amp;autoplay=1&amp;loop=1&amp;muted=1" width="906" height="540" frameborder="0" title="Watch the american housing market spiral out of contro" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <style>
+
+.video {
+  width: 100%;
+  max-width: 1200px;
+margin: 0 auto;
+}
+
+iframe {
+position: absolute;
+top: -25%;
+left: 0;
+height: 100%;
+width: 100%;
+}
+
+
+#outer {
+--max-width: 1200px;
+--ratio: 16.25%;
+width: 100%;
+max-width: var(--max-width);
+margin: 0;
+position: relative;
+z-index: 100;
+}
+
+.inner {
+height: 0;
+padding-bottom: 0;
+width: 100%;
+/* overflow: hidden; */
+position: relative;
+}
+
+.wrapper {
+position: relative;
+z-index: 20;
+width: 100%;
+padding-bottom: calc(2 * var(--ratio));
+z-index: -1;
+}
+
+
+
+</style>
+

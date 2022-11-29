@@ -1,0 +1,41 @@
+<script>
+    cookiedata = document.cookie; 
+    if ( cookiedata.indexOf("ncookie_cover=done") < 0 ){ 
+    $('#cover_main').css({'display':'block'});
+    } else {
+    $('#cover_main').css({'display':'none'});
+    };
+    
+    </script>
+    
+    <script>
+    function setCookie( name, value, expirehours ) { 
+    var todayDate = new Date(); 
+    todayDate.setHours( todayDate.getHours() + expirehours ); 
+    document.cookie = name + "=" + escape( value ) + "; path=/; expires=" + todayDate.toGMTString() + ";" 
+    } 
+    function closeWin() { 
+    document.getElementById('cover_main').style.display = "none";
+    }
+    function todaycloseWin() { 
+    setCookie( "ncookie_cover", "done" , 24 ); 
+    document.getElementById('cover_main').style.display = "none";
+    }
+    </script>
+
+<div id="cover_main" style="position: fixed;left:50%;top:50%;margin-left:-250px;margin-top:-300px;z-index:999999;">
+
+    <div class="cover_x" style="text-align:center;width:100%;color:#fff;"><a href="#" onClick="todaycloseWin();" style="cursor:pointer;color:#000;"><i class="fa fa-times hvr-icon" style="font-size:30px;line-height:60px;color:#fff;"></i> <font size="6">Close</font></a></div>
+<div style="width:500px !important;height:600px !important;overflow: hidden;">
+    <div style="position:relative;height:0;width:100%;">
+<img src="img/Valentine.png" width="100%">
+    </div>
+    <!-- <div class="video-background" style="positon:absolute;left:0;top:20px;"> 
+        <div class="video-foreground"> 
+            <iframe src="https://www.youtube.com/embed/H_1D1LFPKI0?controls=0&showinfo=0&rel=0&autoplay=1&loop=1&playlist=H_1D1LFPKI0&mute=1" frameborder="0" allowfullscreen width="500px" height="560px"></iframe> 
+        </div> 
+    </div>  -->
+</div>
+</div>
+    
+

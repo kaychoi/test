@@ -1,0 +1,514 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=David+Libre|Hind:400,700" rel="stylesheet">
+    <style>
+        body {
+            font-family: "Hind", sans-serif;
+        }
+        header {
+            max-width: 1200px;
+            margin:0 auto;
+
+
+
+            display: flex;
+            justify-content: space-around;
+            
+            }
+        header img {
+            height:40px;
+            margin:20px;
+        }
+        .topmenu ul{
+            list-style: none;
+        }
+        .topmenu ul li {
+            display: inline-block;
+            font-size:14px;
+            padding:20px 10px;
+        }
+        .submenu {
+            position:sticky;
+            background: #fff;
+            width: 100%;
+            height:60px;
+            top:0px;
+        }
+        .menubar ul {
+            list-style: none;
+            text-align: center;
+            padding:0;
+        }
+        .menubar ul li {
+            display: inline-block;
+            text-align: center;
+            padding:0 10px;
+            height:20px;
+            line-height: 20px;
+        }
+        .menubar ul li img {
+           width: 15px;
+            line-height: 20px;
+            margin-bottom:-3px;
+            margin-left:6px;
+            margin-right:6px;
+        }
+        .box {
+            border: 1px solid #000;
+            width:100%;
+            max-width: 400px;
+            padding:15px;
+            margin: 0 auto;
+            }
+            
+            .title {
+                font-size:58px;
+                font-weight: bolder;
+            }
+            .b-height-10 {
+                width:100%;
+                border-top:10px solid #000;
+                margin:5px 0;
+            }
+            .b-height-4 {
+                width:100%;
+                border-top:4px solid #000;
+                margin:5px 0;
+            }
+            .b-height-1 {
+                width:100%;
+                border-top:1px solid #000;
+                margin:5px 0;
+            }
+            .line-height-1 {
+                width:100%;
+                margin:5px 0;
+            }
+            .line-color-gray{
+                border-top:1px solid #eee;
+            }
+            .flex-lo {
+                display:flex;
+                flex-direction: row;
+            }
+            .flex-lo div {
+                flex:auto;
+                flex-basis: 50%;
+            }
+            .txt-12 {
+                font-size:12px;
+            }
+            .txt-14 {
+                font-size:14px;
+            }
+            .txt-10 {
+                font-size:10px;
+            }
+            .txt-20 {
+                font-size:20px;
+            }
+            .txt-34 {
+                font-size:34px;
+            }
+            .txt-40 {
+                font-size:40px;
+            }
+            .txt-50 {
+                font-size:50px;
+            }
+            .txt-right {
+                text-align:right;
+            }
+            .txt-left {
+                text-align:left;
+            }
+            .b {
+                font-weight: bold;
+            }
+            .ml-10 {
+                margin-left:10px;
+            }
+            .mr-10 {
+                margin-right:10px;
+            }
+            .mt-10 {
+                margin-top:10px;
+            }
+            .mb-10 {
+                margin-bottom:10px;
+            }
+        
+            main {
+                max-width:900px;
+                margin:50px auto;
+        
+            }
+            
+            @media (max-width: 800px) {
+                .flex-lo {
+                display:flex;
+                flex-direction: column;
+                }
+                .box {
+                padding:5%;
+                margin:5%;
+                width:80%;
+                }
+                .title {
+                font-size:48px;
+                font-weight: bolder;
+                }
+
+                .topmenu ul li {
+                    display: block;
+                    font-size:14px;
+                    padding:0px;
+                }
+            }
+        </style>
+
+
+</head>
+<body>
+    <header>
+        <div>
+            <img src="./img/logo.png">
+        </div>
+        <div class="topmenu">
+            <ul>
+                <li>Our Products</li>
+                <li>Plant Tour</li>
+                <li>Video</li>
+                <li>Where To Buy?</li>
+                <li>Promotions</li>
+            </ul>
+        </div>
+    </header>
+    <div class="submenu">
+        <div class="b-height-1 line-color-gray"></div>
+        <div class="menubar">
+            <ul>
+                <li><img src="./img/noodle.png">Noodle</li>
+                <li><img src="./img/bowls.png">Bowls</li>
+                <li><img src="./img/cups.png">Cups</li>
+                <li><img src="./img/noodle.png">Snacks</li>
+            </ul>
+        </div>
+        <div class="b-height-1 line-color-gray"></div>
+    </div>
+
+    <main>
+            <div class="flex-lo">
+                <div>
+                <img src="https://haesungj37.sg-host.com/homev2/wp-content/uploads/2016/04/srn_001-1.png" width="100%" alt="">
+                </div>
+                <div>
+                    <div class="ml-10 mr-10 mt-10 mb-10">
+                        <div class="mr-10 ml-10 mb-10">
+                        <div class="txt-34">
+                            <b>Bag Noodle</b> 
+                        </div>
+                        <div class="txt-40">
+                            <b>Shin Ramyun</b> 
+                        </div>
+                        <div class="txt-14 mt-10 mb-10">
+                            <b>Shin, Beef, Spicy</b> 
+                        </div>
+                        <div class="txt-16">
+                            
+                                Nongshim products are among the top selling Ramyun products in the world. We hold the top spot for ramyun in numerous countries. The reasons for our success lie in the unique flavor and convenience of our products. It’s as simple as boiling water in a pot, adding the noodle and soup packages, and waiting for 4 to 5 minutes. Voilá! You have a delicious noodle soup ready for you to enjoy! Our Bag Noodle products create a delicious meal that can be shared with friends and family within minutes. You can also enhance the soup by adding ingredients you love. You can add more vegetables, meat, or an egg to produce an even bolder flavor!
+                    
+                        
+                            
+                        </div>
+                        </div>
+                    </div>
+        
+                </div>
+                
+                </div>
+                
+        
+                <div class="mt-10 mb-10"></div>
+        
+        
+                <div class="flex-lo">
+                    <div>
+                        <div class="ml-10 mr-10 mt-10 mb-10">
+                            <div class="ml-10 mr-10 mt-10 mb-10">
+                                <div class="ml-10 mr-10 mt-10 mb-10">
+                                    <div class="txt-20">
+                                        <b>INGREDIENTS</b>: enriched wheat flour (wheat flour, niacin, reduced iron, thiamine mononitrate, riboflavin, folic acid), potato starch, palm oil, modified potato starch, salt, contains less than 2% of: beef bone extract*, beef extract*, beef fat*, black pepper*, citric acid, corn syrup, dextrose, disodium guanylate, disodium inosinate, disodium succinate, dried flakes (bokchoy, shitake mushroom, carrot, green onion, red chili pepper), flavor enhancer power (maltodextrin, dextrose, glycine, sodium phosphate tribasic, d-xylose), garlic*, gum
+                                        arabic, hydrolyzed corn protein, hydrolyzed soy protein, hydrolyzed wheat protein, maltodextrin, modified corn starch, modified tapioca starch, mushroom extract*, mushroon*, natural flavors, onion*, potassium carbonate, red chili pepper*, riboflavin (color), rice flour, sodium carbonate, sodium phosphates, soy lecithin, soybean paste* (wheat, salt, soy), sugar, textured soy protein [defeatted soy flour, soy protein isolate, soy sauce* (soy, wheat, salt), wheat gluten, yeast extract, salt, garlic*, cocoa*, Onion*, citric acid, dextrose], tocopherols (antioxidant), yeast extract, yellow corn flour, *powdered
+                                        CONTAINS WHEAT AND SOY
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
+                    <div>
+                        <div class="box">
+                            <div class="title">
+                                Nutrition Facts
+                            </div>
+                            <div class="txt-12">
+                                Serving size 1bag(97g)
+                            </div>
+                            <div class="b-height-10"></div>
+                            
+                            <div class="flex-lo">
+                                <div>
+                                    <div class="txt-10">
+                                        Amount per serving
+                                    </div>
+                                    <div class="txt-20">
+                                        Calories
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="txt-34 txt-right">
+                                        340
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="b-height-4"></div>
+                            <div class="txt-12 txt-right">
+                            % Daily Value*
+                            </div>
+                            <div class="b-height-1"></div>
+                            
+                            
+                            <div class="flex-lo">
+                                <div class="txt-14">
+                                    <b>Total Fat</b>
+                                    <span class="txt-14 txt-left ml-10">
+                                        2.5g
+                                    </span>
+                                </div>
+                            
+                                <div class="txt-14 b txt-right">
+                                    3%
+                                </div>
+                            </div>
+                            <div class="b-height-1"></div>
+                            
+                            <div class="flex-lo">
+                                <div class="txt-14 ml-10">
+                                    Polyunsaturated
+                                    <span class="txt-14 txt-left ml-10">
+                                        1g
+                                    </span>
+                                </div>
+                                <div class="txt-14 b txt-right">
+                                    3%
+                                </div>
+                            </div>
+                            
+                            <div class="b-height-1"></div>
+                            
+                            <div class="flex-lo">
+                                <div class="txt-14 ml-10">
+                                    Monounsaturated
+                                    <span class="txt-14 txt-left ml-10">
+                                        1g
+                                    </span>
+                                </div>
+                                
+                                <div class="txt-14 b txt-right">
+                                   
+                                </div>
+                            </div>
+                            
+                            <div class="b-height-1"></div>
+                            
+                            
+                            
+                            <div class="flex-lo">
+                                <div class="txt-14">
+                                    <b>Total Fat</b>
+                                    <span class="txt-14 txt-left ml-10">
+                                        0.5g
+                                    </span>
+                                </div>
+                                
+                                <div class="txt-14 b txt-right">
+                                    3%
+                                </div>
+                            </div>
+                            
+                            <div class="b-height-1"></div>
+                            
+                            <div class="flex-lo">
+                                <div class="txt-14">
+                                    <b>Total Fat</b>
+                                    <span class="txt-14 txt-left ml-10">
+                                        2.5g
+                                    </span>
+                                </div>
+                            
+                                
+                                <div class="txt-14 b txt-right">
+                                    3%
+                                </div>
+                            </div>
+                            
+                            <div class="b-height-1"></div>
+                            
+                            <div class="flex-lo">
+                                <div class="txt-14">
+                                    <b>Total Fat</b>
+                                    <span class="txt-14 txt-left ml-10">
+                                        2.5g
+                                    </span>
+                                </div>
+                            
+                                
+                                <div class="txt-14 b txt-right">
+                                    3%
+                                </div>
+                            </div>
+                            
+                            <div class="b-height-1"></div>
+                            
+                            <div class="flex-lo">
+                                <div class="txt-14 ml-10">
+                                    Includes
+                                    <span class="txt-14 txt-left ml-10">
+                                        2g Added Sugars
+                                    </span>
+                                </div>
+                                <div class="txt-14 b txt-right">
+                                    4%
+                                </div>
+                            </div>
+                            
+                            <div class="b-height-1"></div>
+                            
+                            <div class="flex-lo">
+                                <div class="txt-14 ml-10">
+                                    Protein
+                                    <span class="txt-14 txt-left ml-10">
+                                        9g
+                                    </span>
+                                </div>
+                                <div class="txt-14 b txt-right">
+                                    
+                                </div>
+                            </div>
+                            
+                            <div class="b-height-1"></div>
+                            
+                            
+                            <div class="flex-lo">
+                                <div class="txt-14">
+                                    <b>Total Fat</b>
+                                    <span class="txt-14 txt-left ml-10">
+                                        2.5g
+                                    </span>
+                                </div>
+                            
+                                
+                                <div class="txt-14 b txt-right">
+                                    3%
+                                </div>
+                            </div>
+                            
+                            <div class="b-height-10"></div>
+                            
+                            <div class="flex-lo">
+                                <div class="txt-14">
+                                    Vitamin D
+                                    <span class="txt-14 txt-left ml-10">
+                                        0mcg
+                                    </span>
+                                </div>
+                            
+                                
+                                <div class="txt-14 b txt-right">
+                                    0%
+                                </div>
+                            </div>
+                            
+                            <div class="b-height-1"></div>
+                            
+                            <div class="flex-lo">
+                                <div class="txt-14">
+                                    Calcium D
+                                    <span class="txt-14 txt-left ml-10">
+                                        30mg
+                                    </span>
+                                </div>
+                            
+                                
+                                <div class="txt-14 b txt-right">
+                                    0%
+                                </div>
+                            </div>
+                            
+                            <div class="b-height-1"></div>
+                            
+                            <div class="flex-lo">
+                                <div class="txt-14">
+                                    Iron
+                                    <span class="txt-14 txt-left ml-10">
+                                        4.7mg
+                                    </span>
+                                </div>
+                            
+                                
+                                <div class="txt-14 b txt-right">
+                                    25%
+                                </div>
+                            </div>
+                            
+                            <div class="b-height-1"></div>
+                            
+                            <div class="flex-lo">
+                                <div class="txt-14">
+                                    Potassium
+                                    <span class="txt-14 txt-left ml-10">
+                                        270mg
+                                    </span>
+                                </div>
+                            
+                                
+                                <div class="txt-14 b txt-right">
+                                    6%
+                                </div>
+                            </div>
+                            
+                            <div class="b-height-4"></div>
+                            
+                            <div class="txt-14">
+                                * The % Daily Value (DV) tells you how much a nutrient
+                                in a serving of food contributes to a daily diet. 2,000
+                                calories a day is used for general nutrition advice.
+                            </div>
+                            
+                            
+                            
+                            </div>
+                        
+                    </div>
+                    
+            </div>
+       
+    </main>
+    
+    
+    
+    
+    
+    
+</body>
+</html>

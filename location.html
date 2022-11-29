@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+        <title>Ramen Hub</title>
+
+        <style>
+            .container {
+                font-family : 'Lato' !important;
+            }
+
+            #map {
+                height:470px;
+            }
+            
+            #location__list {
+	            padding: 0;
+				margin: 0;
+	            box-sizing: border-box;
+            }
+            
+            #location__list ul {
+	            list-style: none;
+	            padding-left:0;
+	            display:flex;
+	            flex-wrap: wrap;
+	            justify-content: space-between;
+            }
+            #location__list ul li {
+	            flex-basis: 23%;
+	            
+	        }
+	        #location__list ul li .box{
+	            border: 1px solid #bbb;
+	            padding:10px;
+				margin-top:20px;
+	        }
+	        #location__list ul li .box img{
+	            width:100%;
+	        }
+	        
+	        #location__list ul li .box .name{
+	            font-size:24px;
+	            font-weight: bold;
+	            text-decoration: none;
+	           
+	        }
+	        #location__list ul li .box .name a {
+		        text-decoration: none;
+		        color:#000;
+		        }
+	        #location__list ul li .box .address{
+	            font-size:16px;
+				color:#555;
+				height: 40px;
+	        }
+	        #location__list ul li .box .status{
+	            font-size:16px;
+				color:#222;
+				padding-top:30px;
+				height: 60px;
+	        }
+	        
+	        #location__list ul li .box .marker{
+	            display: flex;
+	            justify-content: flex-end;
+	        }
+	        
+	        #location__list ul li .box .marker img{
+	            width:40px;
+	        }
+	        
+	        @media screen and (max-width:768px) {
+
+		        #location__list ul li {
+	            flex-basis: 48%;
+	            
+	        }
+	        }
+        </style>
+
+
+    </head>
+    <body>
+
+        <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>       
+    
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/xzoom.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://raw.githubusercontent.com/bbbootstrap/libraries/main/xzoom.css" media="all" />
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+            <script>
+	        $(document).ready(function(){
+		        $( '.box > a' ).click( function() {
+	$( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+	return false;
+} );
+		        
+		        
+	        });
+
+        	
+        </script>
+
+        <div class="card_background" id="order_pop_1" style="display:none;position:fixed;left:0;top:0;width:100%;height:100%;z-index:9;opacity:0.7;background-color:#000;">
+        </div>
+        
+        <div class="card" id="order_pop_2" style="display:none;position:fixed;left:50%;top:5%;width:600px;height:700px;margin-left:-300px;z-index:10;color:#000;">                    
+            <div id="load_tweets11" style="padding:30px;"></div>
+        </div>
+
+        <div id="order_pop_3" style="display:none;position:fixed;left:50%;top:50px;z-index:11;margin-left:270px;">
+            <div style="">
+                <a href="#" style="color:red;"><i class="fa fa-times fa-lg" aria-hidden="true" onclick="javascript:close_btn();"></i></a>
+            </div>
+        </div>
+
+        
+        <? include "./header.php"; ?>
+
+        <div class="bg_black fc_white text-center pt-5 pb-5">
+            <h2>LOCATIONS</h2>
+        </div>
+
+        <div class="container">
+            <div class="bg_white fc_black">                
+                <div class="row">
+
+                    <div class="col-sm-12 mt-3">
+                        <div class="row">
+                            <div class="col-sm-12 mb-3">
+                                <div id="map"></div>
+
+                                <script>
+	                                
+	                                
+	                                
+	                                
+	                                
+                                    function initMap() {
+                                        var point = {lat: 33.82949290387706, lng: -118.18469580202475}
+                                        map = new google.maps.Map(document.getElementById('map'), {
+                                            center:{lat: 33.82949290387706, lng: -118.18469580202475},
+                                            zoom: 10
+                                        });
+                                        let infowindow = new google.maps.InfoWindow();  
+                                        
+                                        var icon = {
+										    url: "images/location/ramen.png", // url
+										    scaledSize: new google.maps.Size(30, 30), // scaled size
+										    origin: new google.maps.Point(0,0), // origin
+										    anchor: new google.maps.Point(0, 0) // anchor
+										};
+                                        
+                                        
+										// 롱비치	
+                                        let marker1 = new google.maps.Marker({
+                                            position: {lat: 33.82949290387706, lng: -118.18469580202475},
+                                            map: map,
+                                            icon: icon,
+										   
+                                        });
+                                        // Fullerton location
+                                        var marker2 = new google.maps.Marker({
+                                            position: {lat: 33.87188781670809, lng: -117.9073627580908},
+                                            map: map,
+                                            icon: icon,
+                                        });
+
+										//Costa Mesa location
+										var marker3 = new google.maps.Marker({
+                                            position: {lat: 33.674333009395966, lng: -117.91993938693089},
+                                            map: map,
+                                            icon: icon,
+                                        });
+                                        
+                                        //Orange location - 595 N Tustin St, Orange, CA 92867
+										var marker4 = new google.maps.Marker({
+                                            position: {lat: 33.796963560347386, lng: -117.83526467343559},
+                                            map: map,
+                                            icon: icon,
+                                        });
+
+										
+										google.maps.event.addListener(marker1,"click", () => {
+										    infowindow.close();
+										    infowindow.setOptions({
+										        content: this.descrip,
+										        maxWidth:200
+										    });
+										    
+										    infowindow.setContent('<b>LONG BEACH</b><div id="line_b"></div>3900 ATLANTIC AVE, LONG BEACH, CA, 90807<br><div id="line"></div>');
+										    
+										    infowindow.open(map, marker1);
+										  });
+										  
+										  google.maps.event.addListener(marker2,"click", () => {
+										    infowindow.close();
+										    infowindow.setOptions({
+										        content: this.descrip,
+										        maxWidth:200
+										    });
+										    
+										    infowindow.setContent('<b>Fullerton</b><div id="line_b"></div>153 N Raymond Ave, Fullerton, CA92831<br><div id="line"></div>');
+										    
+										    infowindow.open(map, marker2);
+										  });
+										  
+										  google.maps.event.addListener(marker3,"click", () => {
+										    infowindow.close();
+										    infowindow.setOptions({
+										        content: this.descrip,
+										        maxWidth:200
+										    });
+										    
+										    infowindow.setContent('<b>Costa Mesa</b><div id="line_b"></div>1500 Adams Ave #100B, Costa Mesa, CA 92626<br><div id="line"></div>');
+										    
+										    infowindow.open(map, marker3);
+										  });
+
+										google.maps.event.addListener(marker4,"click", () => {
+										    infowindow.close();
+										    infowindow.setOptions({
+										        content: this.descrip,
+										        maxWidth:200
+										    });
+										    
+										    infowindow.setContent('<b>Orange</b><div id="line_b"></div>595 N Tustin St, Orange, CA 92867<br><div id="line"></div>');
+										    
+										    infowindow.open(map, marker4);
+										  });
+
+                                        
+                                        
+                                        
+                                                                                
+                           
+                                    function ccc(num) {
+									
+	                                    var num = num;
+	                   
+	                             if(num == 1) {
+		                             new google.maps.event.trigger( marker1, 'click' );
+	                             } else if(num == 2) {
+		                             new google.maps.event.trigger( marker2, 'click' );
+	                             } else if(num == 3) {
+		                             new google.maps.event.trigger( marker3, 'click' );
+	                             } else if(num == 4) {
+		                             new google.maps.event.trigger( marker4, 'click' );
+	                             }
+                                        	
+									}
+                                    
+
+	
+	                                  
+                                return {        
+	                             	inF_Obj : ccc  
+	                            }
+
+                                
+                      
+                                    }
+                                    
+                           
+                                    function uuu(num) {
+										var num = num;
+	                                    var totoro = initMap();
+	                                    totoro.inF_Obj(num);
+                                    }
+                                  
+                                </script>
+                                <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBO44gRGRio27FUxSOiAoJcsMmMOJw4zu4&callback=initMap"></script>
+                                
+                                <!-- <img src="images/map.png" alt="" style="width:100%"> -->
+                            </div>
+                        </div>
+<script>
+									
+</script>
+                       <div id="location__list">
+                       		<ul>
+                       			<li>
+                       			<div class="box">
+	                       		<a href="#" onclick="uuu(1);"><img src="./images/location/long-beach.png"></a>
+                       			<div class="name"><a href="#" onclick="uuu(1);">Long Beach</a></div>
+                       			<div class="address">3900 ATLANTIC AVE, <Br>LONG BEACH, CA, 90807</div>
+                       			<div class="status"></div>
+                       			<div class="marker"><a href="https://www.google.com/maps/place/3900+Atlantic+Ave,+Long+Beach,+CA+90807/@33.8292656,-118.1868845,17z/data=!3m1!4b1!4m5!3m4!1s0x80dd3398fa9f4a2f:0x2913be22529ab048!8m2!3d33.8292612!4d-118.1846958?hl=ko" target="_blank"><img src="./images/location/location.png"></a></div>
+                       			</div>
+                       			</li>
+                       			<li>
+                       			<div class="box">
+	                       		<a href="#" onclick="uuu(2);"><img src="./images/location/comingsoon.png"></a>
+                       			<div class="name"><a href="#" onclick="uuu(2);">Fullerton</a></div>
+                       			<div class="address">153 N Raymond Ave, <Br>Fullerton, CA92831</div>
+                       			<div class="status">Coming Soon!</div>
+                       			<div class="marker"><a href="https://www.google.com/maps/place/153+N+Raymond+Ave,+Fullerton,+CA+92831/@33.8717408,-117.9096051,17z/data=!3m1!4b1!4m5!3m4!1s0x80dcd5e6795c8edf:0x4f702ce9120616b7!8m2!3d33.8717364!4d-117.9074164?hl=ko" target="_blank"><img src="./images/location/location.png"></a></div>
+                       			</div>
+                       			</li>
+                       			<li>
+                       			<div class="box">
+	                       		<a href="#" onclick="uuu(3);"><img src="./images/location/comingsoon.png"></a>
+                       			<div class="name"><a href="#" onclick="uuu(3);">Costa Mesa</a></div>
+                       			<div class="address">1500 Adams Ave #100B, <Br>Costa Mesa, CA 92626</div>
+                       			<div class="status">Coming Soon!</div>
+                       			<div class="marker"><a href="https://www.google.com/maps/place/1500+Adams+Ave+%23100b,+Costa+Mesa,+CA+92626/@33.6740785,-117.922171,17z/data=!3m1!4b1!4m5!3m4!1s0x80dcdf608dd1c1d1:0xd789aa6649e82507!8m2!3d33.6740741!4d-117.9199823?hl=ko" target="_blank"><img src="./images/location/location.png"></a></div>
+                       			</div>
+                       			</li>
+                       			<li>
+                       			<div class="box">
+	                       		<a href="#" onclick="uuu(4);"><img src="./images/location/comingsoon.png"></a>
+                       			<div class="name"><a href="#" onclick="uuu(4);">Orange</a></div>
+                       			<div class="address">595 N Tustin St, <Br>Orange, CA 92867</div>
+                       			<div class="status">Coming Soon!</div>
+                       			<div class="marker"><a href="https://www.google.com/maps/place/595+N+Tustin+St,+Orange,+CA+92867/@33.796754,-117.8374641,17z/data=!3m1!4b1!4m5!3m4!1s0x80dcd9fe5c72d81b:0x3a69dd10f25aa4f!8m2!3d33.7967496!4d-117.8352754?hl=ko" target="_blank"><img src="./images/location/location.png"></a></div>
+                       			</div>
+                       			</li>
+                       			
+                       		</ul>
+                       </div> 
+                        
+                        
+                        
+                        
+                        
+  
+                    </div>
+                </div>
+            </div>
+            <? include "./footer.php"; ?>
+        </div>                    
+
+    </body>
+
+
+</html>

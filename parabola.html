@@ -1,0 +1,33 @@
+<html>
+	<title>Animation</title>
+	<body>
+		<canvas id="canvas1" width="800" height="480">></canvas>
+		<script type="text/javascript">
+			var canvas = document.getElementById("canvas1");
+			var context = canvas.getContext("2d");
+
+			var g = 0.3;				// 중력 가속도
+			var vx = 0, vy = 0;			// 속도
+			var posX = 50, posY = 200;	// 위치
+
+			vx = 8; vy = -10;			// 초기 속도값 지정
+
+			setInterval(function()
+			{
+				context.clearRect(0, 0, canvas.width, canvas.height);
+				context.strokeRect(0, 0, canvas.width, canvas.height);
+
+				vy = vy + g;		// 중력 가속도 계산
+
+				posX = posX + vx;
+				posY = posY + vy;
+
+				context.beginPath();
+				context.arc(posX, posY, 30, 0, 2*Math.PI, true);
+				context.stroke();
+				context.closePath();
+			}, 2000/60);
+		</script>
+	</body>
+</html>
+

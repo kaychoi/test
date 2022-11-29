@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Google Map</title>
+</head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    $('#button2').on('click',function(){
+        window.navigator.geolocation.getCurrentPosition(success, error);//()를 붙여 자동호출하는것 x
+    })
+})
+</script>
+<script>
+ function success(position){
+	$('#div').text("내 위치 위도 = " + position.coords.latitude
+			+" 내 위치 경도 = " + position.coords.longitude);
+}
+function error(err){
+	$('div').text("조회 실패 ==>" + err.code);
+}
+</script>
+<body>
+<div id="div"></div>
+<button type="button" id="button2">현재위치조회</button>
+
+<button type="button" id="button">지도 중심 이동하기</button>
+<button type="button" id="button1">지도 중심 이동하기</button>
+  <div id="map" style="width:100%; height: 100vh;"></div>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBO44gRGRio27FUxSOiAoJcsMmMOJw4zu4&callback=initMap&region=us"></script>
+
+</body>
+</html>
+
+
+<script>
+var map;
+var button = document.getElementById('button');
+button.addEventListener('click', changeCenter);
+var button1 = document.getElementById('button1');
+button1.addEventListener('click', changeCenter1);
+
+
+function initMap() {
+  var area1 = { lat: 34.04762907527862 ,lng: -118.2843198801161 };
+  var area2 = { lat: 34.45645645645645 ,lng: -118.2843198801161 };
+  map = new google.maps.Map( document.getElementById('map'), {
+      zoom: 12,
+      center: area1
+    });
+    
+  new google.maps.Marker({
+    position: area1,
+    map: map,
+    label: "area1"
+  });
+  
+
+  new google.maps.Marker({
+    position: area2,
+    map: map,
+    label: "area2"
+  });
+
+}
+
+function changeCenter(){
+  var area2 = { lat: 34.048055775853484, lng: -118.29951191205205 };
+  map.panTo(area2);
+  map.setZoom(16);
+  new google.maps.Marker({
+    position: area2,
+    map: map,
+    label: "area2"
+  });
+}
+
+function changeCenter1(){
+    var area3 = { lat: 34.063181078570615, lng: -118.30240000191453 };
+    map.panTo(area3);
+    map.setZoom(16);
+    new google.maps.Marker({
+        position: area3,
+        map: map,
+        label: "area3"
+      });
+  }
+
+
+    
+    </script>

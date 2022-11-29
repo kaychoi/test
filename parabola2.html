@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>행렬을 이용한 이동/회전변환의 동시적용 예</title>
+<script type="text/javascript" src="http://micropilot.tistory.com/attachment/cfile3.uf@1759C9344F9186C10C5FBC.js"></script>
+<script type="text/javascript">
+var canvas = null;
+var ctx = null;
+var imgUrl = "http://nexgen.city/img/milkis-can.png";
+var missile = null;
+var timer = 0;
+ 
+function Missile(ctx, x,y,speed,imgObj) {
+    this.ctx = ctx;
+    this.x = x;
+    this.y = y;
+    this.speed = speed;
+    this.imgObj = imgObj;
+    this.heading = 0;
+ 
+    Missile.prototype.setHeading = function(heading) {
+        this.heading = heading;
+    }
+ 
+    Missile.prototype.update = function(){
+        this.speed.y += 0.02;
+        this.x += this.speed.x;
+        this.y += this.speed.y;
+        this.findHeading();
+    }
+ 
+    Missile.prototype.findHeading = function() {
+        var directionVec = new Vector2D(this.speed.x, this.speed.y);
+        directionVec.normalize();
+        var dot = directionVec.x*1 + directionVec.y*0;
+        var len = directionVec.length();
+        var cosVal = dot/len;
+        var rad = Math.acos(cosVal);
+         
+        if(directionVec.y<0) {//위쪽을 가리키고 있는 경우에는 각도를 보정해야 한다.
+            rad = Math.PI - rad + Math.PI;
+        }
+        this.heading = rad;
+    }
+ 
+    Missile.prototype.draw = function() {
+        this.ctx.save();
+        var cos = Math.cos(this.heading);
+        var sin = Math.sin(this.heading);
+        this.ctx.transform(cos, sin, -sin, cos, this.x, this.y);
+        this.ctx.drawImage(this.imgObj, -this.imgObj.width/2, -this.imgObj.height/2);
+        this.ctx.restore();
+    }
+};
+ 
+window.onload=function() {
+    canvas = document.getElementById('MyCanvas');
+    ctx = canvas.getContext('2d');
+    start();
+}
+ 
+// Missile(ctx, x,y,speed,imgObj)
+function start() {
+    var img = new Image();
+    img.onload = function() {
+        missile = new Missile(ctx, 40, canvas.height-50, new Vector2D(2.4,-3), img);
+        missile.setHeading( 315*Math.PI/180 );
+        missile.draw();
+        if(timer != 0) clearInterval(timer);
+        timer = setInterval("fire()", 10);
+    }
+    img.src = imgUrl;
+}
+ 
+function fire(){
+    ctx.clearRect(0,0,canvas.width, canvas.height);
+    missile.update();
+    missile.draw();
+}
+</script>
+</head>
+<body>
+<canvas id="MyCanvas" width="1200" height="400" style="border:1px dotted black;">
+    HTML5 Canvas를 지원하지 않는 브라우저입니다.
+</canvas>
+<br/><input type="button" value="test" onClick="start();"/>
+</body>
+</html>
+
+
